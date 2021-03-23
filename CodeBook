@@ -1,0 +1,36 @@
+---
+title: "CodeBook.md"
+output: html_document
+---
+This Codebook explains the different variables used and any transformations applied in scripts for data cleaning project.
+
+# run_analysis.R
+
+## file names
+- Features: List of all features
+- ActivityLabelNames: Links the class labels with their activity name
+
+###Test data
+-testData: test set
+-testActivityLabels: Test labels
+-testSubjects: Each row identifies the subject test who performed the activity for each window sample. Its range is from 1 to 30.
+
+###Train data
+-trainData: train set
+-trainActivityLabels: Training labels
+-trainSubjects: Each row identifies the subject train who performed the activity for each window sample. Its range is from 1 to 30.
+
+##new files from merging
+-mergedSetData: merge the data set (train and test)
+-mergedSetActivityLabels: merge the actyvity labels (train and test)
+-mergedSetSubjects: merge the actyvity labels (train and test)
+
+##New variables
+-ActivityLabelName: simple and lowercase of the variable "ActivityLabelNames" from the data mergedSetActivityLabels
+-mergedSubsetData: new variable from values of variable FeatureName that contains mean or standard deviation(std) without the word Freq, so ...mean()... or ...std()...
+-mergedSubsetData$ActivityLabelName: Add descriptive activity label names in ActivityLabelNames to the merged sub data (mergedSubsetData)
+-mergedSubsetData$SubjectID: Add descriptive ID in SubjectID to the merged sub data (mergedSubsetData)
+-colnames(): Replace columns Names of the subset by Mean and Std
+-mergedSubsetDataTable: the data table of mergedSubsetData
+-MeanMergedSubsetData: mean and sd of the variables organize by "SubjectID", "ActivityLabelName"
+-MeanMergedSubSetDataa: MeanMergedSubsetData by order of SubjectIDs

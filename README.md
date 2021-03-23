@@ -1,59 +1,75 @@
 # Readme
+# Project Getting and Cleaning Data Course Project
+#Langue: français
+# Ibrahim KAMATE 
 
-Steps
 
-1. Set working directory and check it
-setwd("C:\\Users\\anahitas\\Documents\\coursera\\Getting and Cleaning Data\\getdata-projectfiles-UCI HAR Dataset\\UCI HAR Dataset")
-getwd()
+# Instructions:
+# Créez un script R appelé run_analysis.R qui fait ce qui suit.
+# 1. Fusionne les jeux d'entraînement et de tests pour créer un ensemble de données.
+# 2. Extrait uniquement les mesures sur la moyenne et l'écart-type pour chaque mesure.
+# 3. Utilise des noms d'activité descriptifs pour nommer les activités dans l'ensemble de données.
+# 4. Étiqueter correctement l'ensemble de données avec des noms d'activité descriptifs.
+# 5. Crée un deuxième ensemble de données ordonnées indépendant avec la moyenne de chaque variable pour chaque activité et chaque sujet.
 
-2. Read "features.txt" and save as "Featutes" with column names "FeatureId and FeatureName" ## 561 obs. of 2 variables
 
-3. Read test set data(X_test.txt), and use FeatureName for column names ## 2947 obs. of 561 variables
+# Solution
+# 1. Merges the training and the test sets to create one data set
 
-4. Read test activity labels (y_test.txt) and use "ActivityLabelID " for column names
+#Set working directory and check it
+#Read "features.txt" and save as "Featutes" with column names "FeatureId and FeatureName"  # Show numbers of obs and variables
+#Read activity labels (activity_labels.txt) and use "ActvityLabelID" and "ActivityLabelName" for column names 
+#ActivityLabelNames will be linked with all the ActivityLabel
 
-5. Read test subjects (subject_test.txt) and use SubjectID for column names
- 
-6. Read train set  data(X_train.txt), and use FeatureName for column names ## 7352 obs. of 561 variables
- 
-7. Read train activity labels (y_train.txt) and use "ActivityLabelID " for column names
- 
-8. Read train subjects (subject_train.txt) and use SubjectID for column names
- 
-9. Perform rbind to testData and trainData to create mergedSetData ## 10299 obs of 561 variables
+#TEST data
+#Read test set data(X_test.txt), named as testData and use column "FeatureName" of Features as column names # Show numbers of obs and variables
+#Read test activity labels (y_test.txt) and use "ActivityLabelID " for column names # Show numbers of obs and variables
+#Read test subjects (subject_test.txt) and use SubjectID for column names # Show numbers of obs and variables
+#All these data frame have the same number of observation 2947
 
-10. Perform rbind to testActivityLabels and trainActiviyLabels to create mergedSetActivityLabels   
- 
-11. Perform rbind to testSubjects and trainSubjects to create mergedSetSubjects   
+#TRAIN data
+#Read train set  data(X_train.txt), and use column "FeatureName" of the data frame "Features" for column names like X_test # Show numbers of obs and variables
+#Read test activity labels (y_train.txt) and use "ActivityLabelID " for column names like into testActivityLabels# Show numbers of obs and variables
+#Read test subjects (subject_train.txt) and use SubjectID for column names like into testSubjects # Show numbers of obs and variables
+#All these data frame have the same number of observation 7352
 
-12. Read activity labels (activity_labels.tct) and use "ActvityLabelID" and "ActivityLabelName" for column names   
- 
-13. Replace activity label ids with activity label names and call it ActivityLabelName  
+#Perform rbind to testData and trainData to create mergedSetData with the complete observation
+#Perform rbind to testActivityLabels and trainActiviyLabels to create mergedSetActivityLabels with the complete observation
+#Perform rbind to testSubjects and trainSubjects to create mergedSetSubjects with the complete observation
 
-14. Get subset of features related to mean and std and apply to the mergedSetData to get mergedSubsetData  
+#Organize the variable "ActivityLabelName" by making it simple and lowercase, then Replace activity label ids with the 6 types of activity label names and call it ActivityLabelName, 
+#It becomes type instead of ID 
 
-15. Add activity label names (ActivityLabelName) and subject id (SubjectID) to the merged sub    
 
-16. Finally write clean data with descriptive activity  names into mergedSubsetData.txt ##10299 obs. of 68 variables
+# 2. Extracts only the measurements on the mean and standard deviation for each measurement
 
-17. Use library data.tabe to create a data table megedSubsetDataTable
- 
-18.  Create mergedSubsetDataTable from mergedSubsetData
- 
-19. Use columns SubjectID and ActivilityLabelNames of mergedSubsetDataTable to create average data
- 
-20. OrderAverageMegedSubsetData by SubjectIDs ##180 obs. of 68 variables
+#Extract in Features$FeatureName what observation that contains mean or standard deviation(std) without the word Freq, so ...mean()... or ...std()...
+#First Observe the result of variable are only about mean and std
+#This variable can be introduce into the new merged of set data
+#Then add this to the merged set data as a new variable
 
-21. Write the second data set "AverageMegedSubsetData" to complete the course project.
-## 10299 obs. of 68 variables
+# 3. Uses descriptive activity names to name the activities in the data set
+
+#Add descriptive activity label names in ActivityLabelNames and subject id (SubjectID) to the merged sub data (mergedSubsetData) 
+#We have now 2 more variable in this data , 'data.frame':	10299 obs. of  68 variables
+
+# 4. Appropriately labels the data set with descriptive variable names
+#Replace columns Names of the subset, 
+
+# 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+#Use library data.table to create a data table mergedSubsetDataTable
+#Create data table mergedSubsetDataTable from mergedSubsetData
+#Use columns SubjectID and ActivilityLabelNames of mergedSubsetDataTable to organize the columns of average (mean) data and std 
+#MeanMergedSubsetData by order of SubjectIDs
+#Write the second data set "MeanMergedSubsetData" to complete the complete the course project
+
+
 
 
 ==================================================================
 Reference Data Set:
 [1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
 
-==================================================================
-Reference: 
 
 ==================================================================
 Human Activity Recognition Using Smartphones Dataset
